@@ -1,18 +1,19 @@
-import React from 'react';
+import React from "react";
 import {
   createSwitchNavigator,
   createBottomTabNavigator,
   createStackNavigator,
   createAppContainer
-} from 'react-navigation';
+} from "react-navigation";
 
-import TabIcon from './components/TabIcon';
+import TabIcon from "./components/TabIcon";
 
-import PortfolioScreen from './components/PortfolioScreen';
-import BattleScreen from './components/BattleScreen';
-import BodiesScreen from './components/BodiesScreen';
-import LoginScreen from './components/LoginScreen';
-import SignUpScreen from './components/SignUpScreen';
+import PortfolioScreen from "./components/PortfolioScreen";
+import BattleScreen from "./components/BattleScreen";
+import BodiesScreen from "./components/BodiesScreen";
+import LoginScreen from "./components/LoginScreen";
+import SignUpScreen from "./components/SignUpScreen";
+import AccountScreen from "./components/AccountScreen";
 
 const tabNavigatorSettings = {
   Portfolio: {
@@ -23,6 +24,9 @@ const tabNavigatorSettings = {
   },
   Bodies: {
     screen: BodiesScreen
+  },
+  Account: {
+    screen: AccountScreen
   }
 };
 
@@ -31,29 +35,31 @@ const TabNavigator = createBottomTabNavigator(tabNavigatorSettings, {
     tabBarIcon: ({ focused, horizontal, tintColor }) => {
       const { routeName } = navigation.state;
       let iconName;
-      if (routeName === 'Portfolio') {
-        iconName = 'portfolio';
-      } else if (routeName === 'Battle') {
-        iconName = 'battle';
-      } else if (routeName === 'Bodies') {
-        iconName = 'bodies';
+      if (routeName === "Portfolio") {
+        iconName = "portfolio";
+      } else if (routeName === "Battle") {
+        iconName = "battle";
+      } else if (routeName === "Bodies") {
+        iconName = "bodies";
+      } else if (routeName === "Account") {
+        iconName = "account";
       }
 
       return <TabIcon icon={iconName} />;
     }
   }),
   tabBarOptions: {
-    activeTintColor: 'red',
-    inactiveTintColor: 'gray'
+    activeTintColor: "red",
+    inactiveTintColor: "gray"
   }
 });
 
 const AppNavigator = createStackNavigator(
   {
-    App: TabNavigator,
+    App: TabNavigator
   },
   {
-    headerMode: 'none',
+    headerMode: "none",
     navigationOptions: {
       headerVisible: false
     }
@@ -66,7 +72,7 @@ const AuthNavigator = createStackNavigator(
     SignUp: SignUpScreen
   },
   {
-    headerMode: 'none',
+    headerMode: "none",
     navigationOptions: {
       headerVisible: false
     }
@@ -79,7 +85,7 @@ const SwitchNavigator = createSwitchNavigator(
     App: AppNavigator
   },
   {
-    initialRouteName: 'Auth'
+    initialRouteName: "Auth"
   }
 );
 
@@ -88,11 +94,11 @@ const Contain = createAppContainer(SwitchNavigator);
 export default class App extends React.Component {
   static navigationOptions = {
     headerStyle: {
-      backgroundColor: '#f4511e'
+      backgroundColor: "#f4511e"
     },
-    headerTintColor: '#fff',
+    headerTintColor: "#fff",
     headerTitleStyle: {
-      fontWeight: 'bold'
+      fontWeight: "bold"
     }
   };
 
