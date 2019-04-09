@@ -13,7 +13,8 @@ export default class BodiesScreen extends Component {
     this.state = {
       bodies: null,
       display: false,
-      selectedBody: null
+      selectedBody: null,
+      token: null
     };
 
     this.triggerModal = this.triggerModal.bind(this);
@@ -21,9 +22,12 @@ export default class BodiesScreen extends Component {
     this.requestBody = this.requestBody.bind(this);
   }
 
-  componentDidMount() {
+  async componentDidMount() {
     this._sub = this.props.navigation.addListener("didFocus", () => {
       this.updateBodies();
+    });
+    this.setState({
+      token: await getUserToken()
     });
   }
 
@@ -50,7 +54,7 @@ export default class BodiesScreen extends Component {
   }
 
   updateBodies = async () => {
-    let token = await getUserToken();
+    let token = this.state.token || (await getUserToken());
 
     const reqSetting = {
       headers: new Headers({
@@ -58,10 +62,12 @@ export default class BodiesScreen extends Component {
       })
     };
 
-    let result = await fetch("http://18.236.60.81/bodies", reqSetting);
-    data = await result.json();
-    console.log(data);
-    this.setState({ bodies: data });
+    fetch("http://18.236.60.81/bodies", reqSetting)
+      .then(res => res.json())
+      .then(data => {
+        console.log(data);
+        this.setState({ bodies: data });
+      });
   };
 
   showBodyDetail(index) {

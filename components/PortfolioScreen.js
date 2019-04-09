@@ -12,13 +12,14 @@ export default class PortfolioScreen extends Component {
     this.state = {
       userZombie: null,
       requestBody: null,
-      display: false
+      display: false,
+      token: null
     };
     this.triggerModal = this.triggerModal.bind(this);
     this.confirmClaim = this.confirmClaim.bind(this);
   }
 
-  componentDidMount() {
+  async componentDidMount() {
     this._sub = this.props.navigation.addListener("didFocus", () => {
       // console.log(this.props.navigation.getParam("bodyId", null));
       if (this.props.navigation.getParam("bodyId", null) != null) {
@@ -27,6 +28,9 @@ export default class PortfolioScreen extends Component {
       } else {
         this.updateZombie();
       }
+    });
+    this.setState({
+      token: await getUserToken()
     });
   }
 
@@ -45,8 +49,8 @@ export default class PortfolioScreen extends Component {
   }
 
   getBodyInfo = async id => {
+    let token = this.state.token || (await getUserToken());
     console.log("getbodyinfo", id);
-    let token = await getUserToken();
 
     const reqSetting = {
       headers: new Headers({
@@ -54,20 +58,22 @@ export default class PortfolioScreen extends Component {
       })
     };
 
-    let result = await fetch(`http://18.236.60.81/body/${id}`, reqSetting);
-    data = await result.json();
-    console.log(data);
-    if (!data.err) {
-      this.setState({ requestBody: data });
-      this.triggerModal();
-    } else {
-      console.log("failed");
-      Alert.alert("Failed", data.err);
-    }
+    fetch(`http://18.236.60.81/body/${id}`, reqSetting)
+      .then(res => res.json())
+      .then(data => {
+        console.log("bodyinfoget", JSON.stringify(data));
+        if (!data.err) {
+          this.setState({ requestBody: data });
+          this.triggerModal();
+        } else {
+          console.log("failed");
+          Alert.alert("Failed", data.err);
+        }
+      });
   };
 
   updateZombie = async () => {
-    let token = await getUserToken();
+    let token = this.state.token || (await getUserToken());
 
     console.log(token);
 
@@ -90,7 +96,7 @@ export default class PortfolioScreen extends Component {
   };
 
   async confirmClaim() {
-    let token = await getUserToken();
+    let token = this.state.token || (await getUserToken());
 
     console.log(this.state.requestBody.id);
 
@@ -103,11 +109,13 @@ export default class PortfolioScreen extends Component {
       })
     };
 
-    let result = await fetch(`http://18.236.60.81/body`, reqSetting);
-    data = await result.json();
-    console.log(data);
-    this.setState({ requestBody: null, userZombie: null });
-    this.triggerModal();
+    fetch(`http://18.236.60.81/body`, reqSetting)
+      .then(res => res.json())
+      .then(data => {
+        console.log("confirm", JSON.stringify(data));
+        this.triggerModal();
+        this.setState({ requestBody: null, userZombie: null });
+      });
   }
 
   render() {

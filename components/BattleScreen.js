@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import { Alert, Text, View, StyleSheet } from "react-native";
 
 import OpponentTouchable from "./OpponentTouchable";
+import BattleResultModal from "./BattleResultModal";
 
 import { getUserToken } from "../authorization/authorization";
 
@@ -11,15 +12,21 @@ export default class BattleScreen extends Component {
     super();
     this.state = {
       opponents: null,
-      battleResult: null
+      battleResult: null,
+      display: false,
+      token: null
     };
 
+    this.triggerModal = this.triggerModal.bind(this);
     this.fightOpponent = this.fightOpponent.bind(this);
   }
 
-  componentDidMount() {
+  async componentDidMount() {
     this._sub = this.props.navigation.addListener("didFocus", () => {
       this.updateOpponents();
+    });
+    this.setState({
+      token: await getUserToken()
     });
   }
 
@@ -29,8 +36,18 @@ export default class BattleScreen extends Component {
     }
   }
 
+  triggerModal() {
+    this.setState(prevState => {
+      return {
+        display: !prevState.display
+      };
+    });
+  }
+
   updateOpponents = async () => {
-    let token = await getUserToken();
+    console.log("updating opponents");
+    console.log("token", this.state.token);
+    let token = this.state.token || (await getUserToken());
 
     const reqSetting = {
       headers: new Headers({
@@ -45,7 +62,7 @@ export default class BattleScreen extends Component {
   };
 
   fightOpponent = async opponentIndex => {
-    let token = await getUserToken();
+    let token = this.state.token || (await getUserToken());
 
     const reqSetting = {
       headers: new Headers({
@@ -53,40 +70,46 @@ export default class BattleScreen extends Component {
       })
     };
 
-    let result = await fetch(
-      `http://18.236.60.81/battle/result/${opponentIndex}`,
-      reqSetting
-    );
-    data = await result.json();
-    if (data.winner) {
-      Alert.alert(
-        "You won!",
-        data.log,
-        [
-          {
-            text: "OK",
-            onPress: () => {
-              this.setState({ opponents: null });
-            }
-          }
-        ],
-        { cancelable: false }
-      );
-    } else {
-      Alert.alert(
-        "You lose!",
-        data.log,
-        [
-          {
-            text: "OK",
-            onPress: () => {
-              this.setState({ opponents: null });
-            }
-          }
-        ],
-        { cancelable: false }
-      );
-    }
+    fetch(`http://18.236.60.81/battle/result/${opponentIndex}`, reqSetting)
+      .then(res => res.json())
+      .then(data => {
+        console.log(data);
+        this.triggerModal();
+        this.setState({
+          battleResult: data,
+          opponents: null
+        });
+      });
+
+    // if (data.winner) {
+    //   Alert.alert(
+    //     "You won!",
+    //     data.log,
+    //     [
+    //       {
+    //         text: "OK",
+    //         onPress: () => {
+    //           this.setState({ opponents: null });
+    //         }
+    //       }
+    //     ],
+    //     { cancelable: false }
+    //   );
+    // } else {
+    //   Alert.alert(
+    //     "You lose!",
+    //     data.log,
+    //     [
+    //       {
+    //         text: "OK",
+    //         onPress: () => {
+    //           this.setState({ opponents: null });
+    //         }
+    //       }
+    //     ],
+    //     { cancelable: false }
+    //   );
+    // }
     console.log(data);
   };
 
@@ -112,6 +135,13 @@ export default class BattleScreen extends Component {
               opponentIndex={2}
             />
           </View>
+        )}
+        {this.state.battleResult && (
+          <BattleResultModal
+            display={this.state.display}
+            result={this.state.battleResult}
+            onClose={this.triggerModal}
+          />
         )}
       </View>
     );
