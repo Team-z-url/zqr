@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { Text, View, StyleSheet, Alert } from "react-native";
+import fetch from "react-native-fetch-polyfill";
 
 import ClaimBodyModal from "./ClaimBodyModal";
 
@@ -55,7 +56,8 @@ export default class PortfolioScreen extends Component {
     const reqSetting = {
       headers: new Headers({
         Authorization: `Bearer ${token}`
-      })
+      }),
+      timeout: 1500
     };
 
     fetch(`http://18.236.60.81/body/${id}`, reqSetting)
@@ -69,6 +71,9 @@ export default class PortfolioScreen extends Component {
           console.log("failed");
           Alert.alert("Failed", data.err);
         }
+      })
+      .catch(err => {
+        console.log(err);
       });
   };
 
@@ -80,7 +85,8 @@ export default class PortfolioScreen extends Component {
     const reqSetting = {
       headers: new Headers({
         Authorization: `Bearer ${token}`
-      })
+      }),
+      timeout: 1500
     };
 
     fetch("http://18.236.60.81", reqSetting)
@@ -91,7 +97,6 @@ export default class PortfolioScreen extends Component {
       })
       .catch(err => {
         console.log(err);
-        throw err;
       });
   };
 
@@ -106,7 +111,8 @@ export default class PortfolioScreen extends Component {
       headers: new Headers({
         Authorization: `Bearer ${token}`,
         "Content-Type": "application/json"
-      })
+      }),
+      timeout: 1500
     };
 
     fetch(`http://18.236.60.81/body`, reqSetting)
@@ -115,6 +121,9 @@ export default class PortfolioScreen extends Component {
         console.log("confirm", JSON.stringify(data));
         this.triggerModal();
         this.setState({ requestBody: null, userZombie: null });
+      })
+      .catch(err => {
+        console.log(err);
       });
   }
 

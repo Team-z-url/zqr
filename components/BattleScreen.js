@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { Alert, Text, View, StyleSheet } from "react-native";
+import fetch from "react-native-fetch-polyfill";
 
 import OpponentTouchable from "./OpponentTouchable";
 import BattleResultModal from "./BattleResultModal";
@@ -37,6 +38,7 @@ export default class BattleScreen extends Component {
   }
 
   triggerModal() {
+    console.log("trigger modal");
     this.setState(prevState => {
       return {
         display: !prevState.display
@@ -52,13 +54,19 @@ export default class BattleScreen extends Component {
     const reqSetting = {
       headers: new Headers({
         Authorization: `Bearer ${token}`
-      })
+      }),
+      timeout: 1500
     };
 
-    let result = await fetch("http://18.236.60.81/battle", reqSetting);
-    data = await result.json();
-    console.log(data);
-    this.setState({ opponents: data });
+    fetch("http://18.236.60.81/battle", reqSetting)
+      .then(res => res.json())
+      .then(data => {
+        console.log(data);
+        this.setState({ opponents: data });
+      })
+      .catch(err => {
+        console.log(err);
+      });
   };
 
   fightOpponent = async opponentIndex => {
@@ -67,7 +75,8 @@ export default class BattleScreen extends Component {
     const reqSetting = {
       headers: new Headers({
         Authorization: `Bearer ${token}`
-      })
+      }),
+      timeout: 1500
     };
 
     fetch(`http://18.236.60.81/battle/result/${opponentIndex}`, reqSetting)
@@ -79,6 +88,9 @@ export default class BattleScreen extends Component {
           battleResult: data,
           opponents: null
         });
+      })
+      .catch(err => {
+        console.log(err);
       });
 
     // if (data.winner) {
@@ -110,7 +122,6 @@ export default class BattleScreen extends Component {
     //     { cancelable: false }
     //   );
     // }
-    console.log(data);
   };
 
   render() {

@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { Text, View, StyleSheet, FlatList } from "react-native";
+import fetch from "react-native-fetch-polyfill";
 
 import BodyTouchable from "./BodyTouchable";
 import BodyModal from "./BodyModal";
@@ -54,12 +55,14 @@ export default class BodiesScreen extends Component {
   }
 
   updateBodies = async () => {
+    console.log("updating bodies");
     let token = this.state.token || (await getUserToken());
 
     const reqSetting = {
       headers: new Headers({
         Authorization: `Bearer ${token}`
-      })
+      }),
+      timeout: 1500
     };
 
     fetch("http://18.236.60.81/bodies", reqSetting)
@@ -67,6 +70,9 @@ export default class BodiesScreen extends Component {
       .then(data => {
         console.log(data);
         this.setState({ bodies: data });
+      })
+      .catch(err => {
+        console.log(err);
       });
   };
 

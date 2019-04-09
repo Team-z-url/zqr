@@ -69,16 +69,6 @@ export default class AccountScreen extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <TouchableOpacity onPress={this.showJwt} style={styles.touchable}>
-          <Text>Show jwt</Text>
-        </TouchableOpacity>
-
-        <TouchableOpacity
-          onPress={this.onRefreshToken}
-          style={styles.touchable}>
-          <Text>Refresh Token</Text>
-        </TouchableOpacity>
-
         <TouchableOpacity onPress={this.triggerModal} style={styles.touchable}>
           <Text>Scan QR Code</Text>
         </TouchableOpacity>
