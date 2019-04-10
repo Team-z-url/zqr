@@ -42,13 +42,12 @@ const BodyModal = props => (
 const styles = StyleSheet.create({
   modal: {
     flex: 1,
-    alignItems: "center",
     justifyContent: "center",
     backgroundColor: "#fff",
     color: 'white'
   },
   text: {
-    fontSize: 20,
+    fontSize: 25,
     color: 'white'
   },
   button: {
