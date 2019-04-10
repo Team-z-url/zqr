@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import { Text, View, StyleSheet, FlatList } from "react-native";
+import { Text, View, StyleSheet, FlatList, Image } from "react-native";
 import fetch from "react-native-fetch-polyfill";
 
 import BodyTouchable from "./BodyTouchable";
@@ -86,9 +86,14 @@ export default class BodiesScreen extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <Text>Bodies:</Text>
+        <Image
+          style={{ width: 100, height: 70, margin: 20 }}
+          source={require('../assets/logo.png')}
+        />
+        <Text style={styles.text}>Bodies:</Text>
         {this.state.bodies && (
           <FlatList
+            style={styles.text}
             data={this.state.bodies}
             keyExtractor={(item, index) => item.id}
             renderItem={({ item, index }) => (
@@ -119,7 +124,11 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: "center",
     justifyContent: "center",
-    backgroundColor: "#fff",
-    top: "20%"
+    backgroundColor: "#221F1F",
+    paddingTop: '20%'
+  },
+  text: {
+    color: 'white',
+    fontSize: 30
   }
 });

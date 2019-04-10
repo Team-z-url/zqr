@@ -3,10 +3,10 @@ import {
   Image,
   Text,
   Alert,
-  Button,
   TextInput,
   View,
-  StyleSheet
+  StyleSheet,
+  TouchableHighlight
 } from "react-native";
 
 import { login } from "../authorization/authorization";
@@ -60,6 +60,11 @@ export default class App extends React.Component {
           </View>
         ) : (
           <View style={styles.container}>
+
+            <Image
+              style={{ width: 200, height: 120, margin: 40 }}
+              source={require('../assets/logo.png')}
+            />
             <TextInput
               value={this.state.usernameInput}
               onChangeText={usernameInput => this.setState({ usernameInput })}
@@ -73,18 +78,22 @@ export default class App extends React.Component {
               secureTextEntry={true}
               style={styles.input}
             />
-            <Button
-              title={"Login"}
-              style={styles.input}
+            <TouchableHighlight
+              style={styles.loginBut}
               onPress={this.onLogin.bind(this)}
-            />
-            <Button
-              title={"SignUp"}
-              style={styles.signupButton}
+            >
+              <Text style={styles.text}>Login</Text>
+            </TouchableHighlight>
+
+            <View style={styles.line}></View>
+            <TouchableHighlight
+              style={styles.signupBut}
               onPress={() => {
                 this.props.navigation.navigate("SignUp");
               }}
-            />
+            >
+              <Text style={styles.text}>Sign Up</Text>
+            </TouchableHighlight>
           </View>
         )}
       </View>
@@ -97,14 +106,47 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: "center",
     justifyContent: "center",
-    backgroundColor: "#fff"
+    backgroundColor: "#221F1F"
   },
   input: {
     width: 200,
-    height: 44,
+    height: 40,
     padding: 10,
     borderWidth: 1,
     borderColor: "black",
-    marginBottom: 10
+    marginBottom: 10,
+    backgroundColor: "white",
+    borderRadius: 5,
+  },
+  loginBut: {
+    width: 200,
+    height: 37,
+    borderColor: 'black',
+    borderWidth: 1,
+    alignItems: "center",
+    backgroundColor: "#21AC1D",
+    padding: 10,
+    margin: 10,
+    borderRadius: 5
+  },
+  signupBut: {
+    width: 200,
+    height: 37,
+    borderColor: 'black',
+    borderWidth: 1,
+    alignItems: "center",
+    backgroundColor: "#5eb55c",
+    padding: 10,
+    margin: 10,
+    borderRadius: 5
+  },
+  text: {
+    color: 'white'
+  },
+  line: {
+    width: 200,
+    height: 1.5,
+    backgroundColor: 'white',
+    margin: 10
   }
 });

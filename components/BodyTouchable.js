@@ -9,12 +9,27 @@ export default class BodyTouchable extends Component {
   render() {
     return (
       <View>
-        <Text>{this.props.name}</Text>
+        <Text style={styles.text}>{this.props.name}</Text>
         <TouchableOpacity
+          style={styles.touch}
           onPress={() => this.props.onpress(this.props.bodyIndex)}>
-          <Text> Show </Text>
+          <Text style={styles.text}> Show </Text>
         </TouchableOpacity>
       </View>
     );
   }
 }
+const styles = StyleSheet.create({
+  text: {
+    color: 'white',
+    fontSize: 20
+  },
+  touch: {
+    backgroundColor: '#21AC1D',
+    width: 60,
+    alignItems: "center",
+    borderRadius: 5,
+    marginBottom: 20
+  },
+});
+
