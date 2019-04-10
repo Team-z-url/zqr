@@ -1,7 +1,7 @@
 import React from "react";
 import { Text, Button, View, StyleSheet } from "react-native";
 
-export default class PlayedBeforeScreen extends Component {
+export default class PlayedBeforeScreen extends React.Component {
 
 	constructor(props) {
 		super(props);
@@ -22,7 +22,7 @@ export default class PlayedBeforeScreen extends Component {
 					title={"No"}
 					style={styles.input}
 					onPress={() => {
-						this.props.navigation.navigate("InformationPage");
+						this.props.navigation.navigate("Info");
 					}}
 				/>
 			</View>
