@@ -46,7 +46,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     backgroundColor: "#221F1F",
-    paddingTop: 40
+    paddingTop: 20
   },
   text: {
     color: "white",
