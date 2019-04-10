@@ -88,7 +88,7 @@ export default class BodiesScreen extends Component {
       <View style={styles.container}>
         <Image
           style={{ width: 100, height: 70, margin: 20 }}
-          source={require('../assets/logo.png')}
+          source={require("../assets/logo.png")}
         />
         <Text style={styles.text}>Bodies:</Text>
         {this.state.bodies && (
@@ -125,10 +125,11 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     backgroundColor: "#221F1F",
-    paddingTop: '20%'
+    paddingTop: "20%"
   },
   text: {
-    color: 'white',
-    fontSize: 30
+    color: "white",
+    fontSize: 30,
+    marginBottom: 20
   }
 });

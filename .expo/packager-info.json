@@ -1,9 +1,9 @@
 {
   "devToolsPort": 19002,
-  "expoServerPort": 19000,
-  "packagerPort": 19001,
-  "packagerPid": 12312,
-  "expoServerNgrokUrl": "https://yj-xbe.anonymous.zqr-client.exp.direct",
-  "packagerNgrokUrl": "https://packager.yj-xbe.anonymous.zqr-client.exp.direct",
-  "ngrokPid": 19044
+  "expoServerPort": null,
+  "packagerPort": null,
+  "packagerPid": null,
+  "expoServerNgrokUrl": null,
+  "packagerNgrokUrl": null,
+  "ngrokPid": null
 }

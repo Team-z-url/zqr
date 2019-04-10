@@ -15,18 +15,20 @@ const ClaimBodyModal = props => (
     onRequestClose={() => console.log("closed")}>
     <View style={styles.modal}>
       <Text style={styles.text}>Name: {props.body.name}</Text>
-      <Text style={styles.text}>HP: {props.body.health}</Text>
-      <Text style={styles.text}>Attack: {props.body.attack}</Text>
-      <Text style={styles.text}>Defense: {props.body.defense}</Text>
-      <Text style={styles.text}>Speed: {props.body.speed}</Text>
+      <Text style={styles.hp}>HP: {props.body.health}</Text>
+      <Text style={styles.attack}>Attack: {props.body.attack}</Text>
+      <Text style={styles.defense}>Defense: {props.body.defense}</Text>
+      <Text style={styles.speed}>Speed: {props.body.speed}</Text>
 
-      <TouchableOpacity style={styles.button} onPress={props.onConfirm}>
-        <Text>Take Over</Text>
-      </TouchableOpacity>
+      <View style={styles.buttonsContainer}>
+        <TouchableOpacity style={styles.touch} onPress={props.onConfirm}>
+          <Text style={styles.buttonText}>Take Over</Text>
+        </TouchableOpacity>
 
-      <TouchableOpacity style={styles.button} onPress={props.onClose}>
-        <Text>Close</Text>
-      </TouchableOpacity>
+        <TouchableOpacity style={styles.touch} onPress={props.onClose}>
+          <Text style={styles.buttonText}>Close</Text>
+        </TouchableOpacity>
+      </View>
     </View>
   </Modal>
 );
@@ -34,15 +36,71 @@ const ClaimBodyModal = props => (
 const styles = StyleSheet.create({
   modal: {
     flex: 1,
-    alignItems: "center",
     justifyContent: "center",
-    backgroundColor: "#fff"
+    backgroundColor: "#221F1F",
+    paddingTop: 40
   },
   text: {
-    fontSize: 20
+    color: "white",
+    fontSize: 20,
+    margin: 10,
+    fontWeight: "bold",
+    backgroundColor: "#4A4D50",
+    height: 50,
+    textAlignVertical: "center",
+    borderRadius: 10,
+    padding: 5
+  },
+  hp: {
+    color: "#21AC1D",
+    fontSize: 30,
+    margin: 10,
+    fontWeight: "bold"
+  },
+  attack: {
+    color: "#E50914",
+    fontSize: 30,
+    margin: 10,
+    fontWeight: "bold"
+  },
+  defense: {
+    color: "#F6F603",
+    fontSize: 30,
+    margin: 10,
+    fontWeight: "bold"
+  },
+  speed: {
+    color: "#2586E8",
+    fontSize: 30,
+    margin: 10,
+    fontWeight: "bold"
+  },
+  zombie: {
+    position: "absolute",
+    width: 100,
+    height: 300,
+    right: 0,
+    top: 100
   },
   button: {
     margin: 20
+  },
+  touch: {
+    backgroundColor: "#21AC1D",
+    width: 160,
+    alignItems: "center",
+    borderRadius: 5,
+    marginBottom: 20,
+    padding: 5
+  },
+  buttonText: {
+    color: "white",
+    fontSize: 25
+  },
+  buttonsContainer: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center"
   }
 });
 
