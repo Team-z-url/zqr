@@ -9,12 +9,27 @@ export default class OpponentTouchable extends Component {
   render() {
     return (
       <View>
-        <Text>{this.props.name}</Text>
+        <Text style={styles.text}>{this.props.name}</Text>
         <TouchableOpacity
+         style={styles.touch}
           onPress={() => this.props.onpress(this.props.opponentIndex)}>
-          <Text> Attack </Text>
+          <Text style={styles.text}> Attack </Text>
         </TouchableOpacity>
       </View>
     );
   }
 }
+
+const styles = StyleSheet.create({
+  touch: {
+    backgroundColor: '#21AC1D',
+    width: 100,
+    alignItems: "center",
+    borderRadius: 5,
+    marginBottom: 20
+  },
+  text: {
+    color: 'white',
+    fontSize: 30
+  }
+})

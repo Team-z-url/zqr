@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import { Text, View, StyleSheet, Alert } from "react-native";
+import { Text, View, StyleSheet, Alert, Image } from "react-native";
 import fetch from "react-native-fetch-polyfill";
 
 import ClaimBodyModal from "./ClaimBodyModal";
@@ -133,10 +133,10 @@ export default class PortfolioScreen extends Component {
         {this.state.userZombie && (
           <View>
             <Text style={styles.text}>Name: {this.state.userZombie.name}</Text>
-            <Text style={styles.text}>HP: {this.state.userZombie.health}</Text>
-            <Text style={styles.text}>Attack: {this.state.userZombie.attack}</Text>
-            <Text style={styles.text}>Defense: {this.state.userZombie.defense}</Text>
-            <Text style={styles.text}>Speed: {this.state.userZombie.speed}</Text>
+            <Text style={styles.hp}>HP: {this.state.userZombie.health}</Text>
+            <Text style={styles.attack}>Attack: {this.state.userZombie.attack}</Text>
+            <Text style={styles.defense}>Defense: {this.state.userZombie.defense}</Text>
+            <Text style={styles.speed}>Speed: {this.state.userZombie.speed}</Text>
             <Text style={styles.text}>Since: {this.state.userZombie.since}</Text>
           </View>
         )}
@@ -149,6 +149,10 @@ export default class PortfolioScreen extends Component {
             onConfirm={this.confirmClaim}
           />
         )}
+          <Image
+            style={styles.zombie}
+            source={require('../assets/zombie.png')}
+          />
       </View>
     );
   }
@@ -157,11 +161,49 @@ export default class PortfolioScreen extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: "center",
     justifyContent: "center",
     backgroundColor: "#221F1F"
   },
   text: {
-    color: 'white'
+    color: 'white',
+    fontSize: 20,
+    margin: 10,
+    fontWeight: 'bold',
+    backgroundColor: '#4A4D50',
+    height: 50,
+    textAlignVertical: "center",
+    borderRadius: 10,
+    padding: 5
+  },
+  hp: {
+    color: '#21AC1D',
+    fontSize: 30,
+    margin: 10,
+    fontWeight: 'bold',
+  },
+  attack: {
+    color: '#E50914',
+    fontSize: 30,
+    margin: 10,
+    fontWeight: 'bold',
+  },
+  defense: {
+    color: '#F6F603',
+    fontSize: 30,
+    margin: 10,
+    fontWeight: 'bold',
+  },
+  speed: {
+    color: "#2586E8",
+    fontSize: 30,
+    margin: 10,
+    fontWeight: 'bold',
+  },
+  zombie: {
+    position: "absolute",
+    width: 100,
+    height: 300,
+    right: 0,
+    top: 100
   }
 });

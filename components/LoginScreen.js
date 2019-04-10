@@ -63,7 +63,7 @@ export default class App extends React.Component {
 
             <Image
               style={{ width: 200, height: 120, margin: 40 }}
-              source={{uri: 'https://s3-us-west-2.amazonaws.com/zqr-picture/test-logo.png'}}
+              source={require('../assets/logo.png')}
             />
             <TextInput
               value={this.state.usernameInput}
@@ -79,7 +79,7 @@ export default class App extends React.Component {
               style={styles.input}
             />
             <TouchableHighlight
-              style={styles.touchBut}
+              style={styles.loginBut}
               onPress={this.onLogin.bind(this)}
             >
               <Text style={styles.text}>Login</Text>
@@ -87,12 +87,12 @@ export default class App extends React.Component {
 
             <View style={styles.line}></View>
             <TouchableHighlight
-              style={styles.touchBut}
+              style={styles.signupBut}
               onPress={() => {
                 this.props.navigation.navigate("SignUp");
               }}
             >
-              <Text style={styles.text}>SignUp</Text>
+              <Text style={styles.text}>Sign Up</Text>
             </TouchableHighlight>
           </View>
         )}
@@ -118,7 +118,7 @@ const styles = StyleSheet.create({
     backgroundColor: "white",
     borderRadius: 5,
   },
-  touchBut: {
+  loginBut: {
     width: 200,
     height: 37,
     borderColor: 'black',
@@ -127,7 +127,18 @@ const styles = StyleSheet.create({
     backgroundColor: "#21AC1D",
     padding: 10,
     margin: 10,
-    borderRadius: 5,
+    borderRadius: 5
+  },
+  signupBut: {
+    width: 200,
+    height: 37,
+    borderColor: 'black',
+    borderWidth: 1,
+    alignItems: "center",
+    backgroundColor: "#5eb55c",
+    padding: 10,
+    margin: 10,
+    borderRadius: 5
   },
   text: {
     color: 'white'

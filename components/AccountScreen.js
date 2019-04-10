@@ -69,12 +69,16 @@ export default class AccountScreen extends React.Component {
   render() {
     return (
       <View style={styles.container}>
+        <Image
+          style={{ width: 200, height: 120, margin: 40 }}
+          source={require('../assets/logo.png')}
+        />
         <TouchableOpacity onPress={this.triggerModal} style={styles.touchable}>
-          <Text>Scan QR Code</Text>
+          <Text style={{color: 'white'}}>Scan QR Code</Text>
         </TouchableOpacity>
 
         <TouchableOpacity onPress={this.onLogOut} style={styles.touchable}>
-          <Text>Log Out</Text>
+          <Text style={{color: 'white'}}>Log Out</Text>
         </TouchableOpacity>
 
         <QRCodeScannerModal
@@ -92,12 +96,14 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: "center",
     justifyContent: "center",
-    backgroundColor: "#fff"
+    backgroundColor: "#221F1F"
   },
   touchable: {
     padding: 10,
     margin: 10,
-    backgroundColor: "#FFEABA",
-    borderRadius: 5
+    backgroundColor: "#21AC1D",
+    borderRadius: 5,
+    width: 150,
+    alignItems: "center",
   }
 });

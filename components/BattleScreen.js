@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import { Alert, Text, View, StyleSheet } from "react-native";
+import { Alert, Text, View, StyleSheet, Image } from "react-native";
 import fetch from "react-native-fetch-polyfill";
 
 import OpponentTouchable from "./OpponentTouchable";
@@ -127,6 +127,10 @@ export default class BattleScreen extends Component {
   render() {
     return (
       <View style={styles.container}>
+           <Image
+              style={{ width: 100, height: 70, margin: 20 }}
+              source={require('../assets/logo.png')}
+            />
         <Text>Opponents:</Text>
         {this.state.opponents && (
           <View style={{ width: 300 }}>
@@ -164,6 +168,6 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: "center",
     justifyContent: "center",
-    backgroundColor: "#fff"
+    backgroundColor: "#221F1F"
   }
 });
