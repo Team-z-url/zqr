@@ -1,5 +1,5 @@
 import React from 'react';
-import { Image, Text, Alert, Button, TextInput, View, StyleSheet } from 'react-native';
+import { Image, Text, Alert, TextInput, View, StyleSheet, TouchableHighlight } from 'react-native';
 
 const auth0ClientId = 'ZLDepP0e3CUPK6k1qcsQU86R1Zk9KxEp';
 const auth0Domain = 'https://zombie-qr.auth0.com';
@@ -68,6 +68,10 @@ export default class App extends React.Component {
                         <Text style={styles.title}>{this.state.username} logged in!</Text> 
                     </View>:
                     <View style={styles.container}>
+                        <Image
+                        style={{ width: 200, height: 120, margin: 40 }}
+                        source={require('../assets/logo.png')}
+                        />
                         <TextInput
                             value={this.state.usernameInput}
                             onChangeText={(usernameInput) => this.setState({ usernameInput })}
@@ -88,11 +92,12 @@ export default class App extends React.Component {
                             secureTextEntry={true}
                             style={styles.input}
                         />
-                        <Button
-                            title={'Sign Up'}
-                            style={styles.input}
+                        <TouchableHighlight
+                            style={styles.signupBut}
                             onPress={this.onSignUp.bind(this)}
-                        />
+                        >
+                        <Text style={styles.text}>Sign Up</Text>
+                        </TouchableHighlight>
                     </View>
                 }
 
@@ -107,7 +112,7 @@ const styles = StyleSheet.create({
         flex: 1,
         alignItems: 'center',
         justifyContent: 'center',
-        backgroundColor: '#fff',
+        backgroundColor: "#221F1F"
     },
     input: {
         width: 200,
@@ -116,5 +121,21 @@ const styles = StyleSheet.create({
         borderWidth: 1,
         borderColor: 'black',
         marginBottom: 10,
+        borderRadius: 5,
+        backgroundColor: "white",
     },
+    signupBut: {
+        width: 200,
+        height: 37,
+        borderColor: 'black',
+        borderWidth: 1,
+        alignItems: "center",
+        backgroundColor: "#21AC1D",
+        padding: 10,
+        margin: 30,
+        borderRadius: 5
+      },
+      text: {
+        color: 'white'
+      },
 });

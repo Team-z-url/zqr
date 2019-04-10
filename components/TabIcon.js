@@ -1,21 +1,23 @@
-import React from 'react';
-import {
-  Image, StyleSheet, Text, View
-} from 'react-native';
+import React from "react";
+import { Image, StyleSheet, Text, View } from "react-native";
 
 const icons = {
   portfolio: {
-    imgName: 'portfolio',
-    uri: require('../assets/icons/portfolio.png')
+    imgName: "portfolio",
+    uri: require("../assets/icons/portfolio.png")
   },
   battle: {
-    imgName: 'battle',
-    uri: require('../assets/icons/battle.png')
+    imgName: "battle",
+    uri: require("../assets/icons/battle.png")
   },
   bodies: {
-    imgName: 'bodies',
-    uri: require('../assets/icons/bodies.png')
+    imgName: "bodies",
+    uri: require("../assets/icons/bodies.png")
   },
+  account: {
+    imgName: "account",
+    uri: require("../assets/icons/account.png")
+  }
 };
 
 export default class TabIcon extends React.Component {
@@ -27,7 +29,7 @@ export default class TabIcon extends React.Component {
     const iconName = this.props.icon;
     return (
       <Image
-        style={{ marginTop: 5, width: 26, height: 26 }}
+        style={{ marginTop: 5, width: 26, height: 30 }}
         source={icons[iconName].uri}
       />
     );
