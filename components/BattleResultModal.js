@@ -15,7 +15,7 @@ const BattleResultModal = props => (
     animationType='slide'
     onRequestClose={() => console.log("closed")}>
     <View style={styles.modal}>
-      <Text style={styles.text}>
+      <Text style={styles.message}>
         {props.result.winner ? "You won!" : "You lose!"}
       </Text>
       <ScrollView>
@@ -23,7 +23,7 @@ const BattleResultModal = props => (
       </ScrollView>
 
       <TouchableOpacity style={styles.button} onPress={props.onClose}>
-        <Text>OK</Text>
+        <Text style={styles.text}>OK</Text>
       </TouchableOpacity>
     </View>
   </Modal>
@@ -34,12 +34,20 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: "center",
     justifyContent: "center",
-    backgroundColor: "#fff"
+    backgroundColor: "#221F1F"
   },
   text: {
-    fontSize: 20
+    fontSize: 20,
+    color: 'white',
+    margin: 8
   },
   button: {
+    margin: 20
+  },
+  message: {
+    color: '#E50914',
+    fontSize: 30,
+    fontWeight: 'bold',
     margin: 20
   }
 });

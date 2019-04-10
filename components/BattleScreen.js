@@ -128,10 +128,10 @@ export default class BattleScreen extends Component {
     return (
       <View style={styles.container}>
            <Image
-              style={{ width: 100, height: 70, margin: 20 }}
+              style={{ width: 100, height: 70, margin: 10 }}
               source={require('../assets/logo.png')}
             />
-        <Text>Opponents:</Text>
+        <Text style={{color: 'white', fontSize: 20, marginBottom: 10}}>Opponents:</Text>
         {this.state.opponents && (
           <View style={{ width: 300 }}>
             <OpponentTouchable
