@@ -6,7 +6,8 @@ import {
   TextInput,
   View,
   StyleSheet,
-  TouchableHighlight
+  TouchableHighlight,
+  KeyboardAvoidingView
 } from "react-native";
 
 import { login } from "../authorization/authorization";
@@ -41,7 +42,7 @@ export default class App extends React.Component {
     let res = await login(usernameInput, passwordInput);
 
     if (!res.error) {
-      this.props.navigation.navigate("App");
+      this.props.navigation.navigate("Ask");
     } else if (res.error) {
       Alert.alert("Failed", res.error_description);
     }
@@ -49,7 +50,7 @@ export default class App extends React.Component {
 
   render() {
     return (
-      <View style={styles.container}>
+      <KeyboardAvoidingView style={styles.container} behavior="padding" enabled>
         {this.state.username ? (
           <View style={styles.container}>
             <Image
@@ -96,7 +97,7 @@ export default class App extends React.Component {
             </TouchableHighlight>
           </View>
         )}
-      </View>
+      </KeyboardAvoidingView>
     );
   }
 }
