@@ -44,10 +44,12 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: "center",
     justifyContent: "center",
-    backgroundColor: "#fff"
+    backgroundColor: "#fff",
+    color: 'white'
   },
   text: {
-    fontSize: 20
+    fontSize: 20,
+    color: 'white'
   },
   button: {
     margin: 20
