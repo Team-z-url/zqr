@@ -81,6 +81,11 @@ export default class AccountScreen extends React.Component {
           <Text style={{color: 'white'}}>Log Out</Text>
         </TouchableOpacity>
 
+        <TouchableOpacity onPress={() => {
+          this.props.navigation.navigate("Info")}} style={styles.touchable}>
+          <Text style={{color: 'white'}}>Guide</Text>
+        </TouchableOpacity>
+
         <QRCodeScannerModal
           display={this.state.display}
           onClose={this.triggerModal}
