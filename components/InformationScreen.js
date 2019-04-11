@@ -1,5 +1,5 @@
 import React from "react";
-import { Text, View, StyleSheet } from "react-native";
+import { Text, View, StyleSheet, TouchableOpacity, ScrollView } from "react-native";
 
 export default class InformationScreen extends React.Component {
 	constructor(props) {
@@ -8,7 +8,10 @@ export default class InformationScreen extends React.Component {
 
 	render() {
 		return (
-			<View style={styles.container}>
+			<ScrollView style={styles.container}>
+				<Text></Text>
+				<Text></Text>
+				<Text></Text>
 				<Text style={styles.title}>Z-QR Guide</Text> 
 				<Text style={styles.text}>Welcome to Z-QR! This page will help to explain the features present in our app.</Text>
 				<Text></Text>
@@ -23,7 +26,13 @@ export default class InformationScreen extends React.Component {
 				<Text></Text>
 				<Text style={styles.header}>Spreading the Infection</Text>
 				<Text style={styles.text}>So what's that QR code used for? Turning your friends into zombies of course! Have your friend open the app and tap on Account located in the navigation bar. Tap on Scan QR Code to open your phone's camera and then have your friend scan your body's QR code. It will take them to a new screen where the body's stats are shown. Then they can choose to become that zombie, or decline.</Text>
-			</View>
+				
+				<TouchableOpacity onPress={() => {
+		          this.props.navigation.navigate("Portfolio")}} style={styles.touchable}>
+		          <Text style={styles.buttonText}>To Portfolio</Text>
+		        </TouchableOpacity>
+
+			</ScrollView>
 		)
 	} 
 }
@@ -31,17 +40,35 @@ export default class InformationScreen extends React.Component {
 const styles = StyleSheet.create({
   container: {
   	flex: 1,
-    alignItems: "center",
-    justifyContent: "center",
-    width: "80%"
+    backgroundColor: "#221F1F"
   },
   title: {
-  	fontSize: 24
+  	fontSize: 24,
+  	color: "green",
+  	textAlign: "center"
   },
   header: {
-  	fontSize: 18
+  	fontSize: 18,
+  	color: "red",
+  	textAlign: "center"
   },
   text: {
-  	fontSize: 12
+  	fontSize: 12,
+  	color: "white",
+  	textAlign: "center"
   },
+  touchable: {
+    padding: 10,
+    margin: 10,
+    backgroundColor: "#21AC1D",
+    borderRadius: 5,
+    width: 150,
+    alignItems: "center",
+    justifyContent: "center",
+    textAlign: "center"
+  },
+  buttonText: {
+  	color: "white",
+  	textAlign: "center"
+  }
 });
