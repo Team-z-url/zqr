@@ -1,7 +1,9 @@
 {
   "packagerPort": null,
   "packagerPid": null,
-  "expoServerNgrokUrl": null,
-  "packagerNgrokUrl": null,
-  "ngrokPid": null
+  "expoServerNgrokUrl": "https://yj-xbe.kanoni4567.zqr-client.exp.direct",
+  "packagerNgrokUrl": "https://packager.yj-xbe.kanoni4567.zqr-client.exp.direct",
+  "ngrokPid": 572,
+  "devToolsPort": 19002,
+  "expoServerPort": null
 }

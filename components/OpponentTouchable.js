@@ -27,7 +27,7 @@ const styles = StyleSheet.create({
   },
   touch: {
     backgroundColor: "#21AC1D",
-    width: 100,
+    width: 80,
     alignItems: "center",
     borderRadius: 5,
     marginBottom: 20,
@@ -35,6 +35,6 @@ const styles = StyleSheet.create({
   },
   text: {
     color: "white",
-    fontSize: 30
+    fontSize: 23
   }
 });
