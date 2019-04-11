@@ -1,9 +1,9 @@
 {
-  "devToolsPort": 19002,
-  "expoServerPort": null,
   "packagerPort": null,
   "packagerPid": null,
-  "expoServerNgrokUrl": null,
-  "packagerNgrokUrl": null,
-  "ngrokPid": null
+  "expoServerNgrokUrl": "https://az-ps5.kanoni4567.zqr-client.exp.direct",
+  "packagerNgrokUrl": "https://packager.az-ps5.kanoni4567.zqr-client.exp.direct",
+  "ngrokPid": 15588,
+  "devToolsPort": 19002,
+  "expoServerPort": null
 }

@@ -127,11 +127,13 @@ export default class BattleScreen extends Component {
   render() {
     return (
       <View style={styles.container}>
-           <Image
-              style={{ width: 100, height: 70, margin: 10 }}
-              source={require('../assets/logo.png')}
-            />
-        <Text style={{color: 'white', fontSize: 20, marginBottom: 10}}>Opponents:</Text>
+        <Image
+          style={{ width: 100, height: 70, margin: 10 }}
+          source={require("../assets/logo.png")}
+        />
+        <Text style={{ color: "white", fontSize: 20, marginBottom: 10 }}>
+          Opponents:
+        </Text>
         {this.state.opponents && (
           <View style={{ width: 300 }}>
             <OpponentTouchable
@@ -151,13 +153,13 @@ export default class BattleScreen extends Component {
             />
           </View>
         )}
-        {this.state.battleResult && (
+        {this.state.battleResult && this.state.display ? (
           <BattleResultModal
             display={this.state.display}
             result={this.state.battleResult}
             onClose={this.triggerModal}
           />
-        )}
+        ) : null}
       </View>
     );
   }
