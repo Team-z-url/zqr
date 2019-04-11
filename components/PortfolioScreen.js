@@ -134,10 +134,15 @@ export default class PortfolioScreen extends Component {
           <View>
             <Text style={styles.text}>Name: {this.state.userZombie.name}</Text>
             <Text style={styles.hp}>HP: {this.state.userZombie.health}</Text>
-            <Text style={styles.attack}>Attack: {this.state.userZombie.attack}</Text>
-            <Text style={styles.defense}>Defense: {this.state.userZombie.defense}</Text>
-            <Text style={styles.speed}>Speed: {this.state.userZombie.speed}</Text>
-            <Text style={styles.text}>Since: {this.state.userZombie.since}</Text>
+            <Text style={styles.attack}>
+              Attack: {this.state.userZombie.attack}
+            </Text>
+            <Text style={styles.defense}>
+              Defense: {this.state.userZombie.defense}
+            </Text>
+            <Text style={styles.speed}>
+              Speed: {this.state.userZombie.speed}
+            </Text>
           </View>
         )}
 
@@ -149,10 +154,7 @@ export default class PortfolioScreen extends Component {
             onConfirm={this.confirmClaim}
           />
         )}
-          <Image
-            style={styles.zombie}
-            source={require('../assets/zombie.png')}
-          />
+        <Image style={styles.zombie} source={require("../assets/zombie.png")} />
       </View>
     );
   }
@@ -165,39 +167,39 @@ const styles = StyleSheet.create({
     backgroundColor: "#221F1F"
   },
   text: {
-    color: 'white',
+    color: "white",
     fontSize: 20,
     margin: 10,
-    fontWeight: 'bold',
-    backgroundColor: '#4A4D50',
+    fontWeight: "bold",
+    backgroundColor: "#4A4D50",
     height: 50,
     textAlignVertical: "center",
     borderRadius: 10,
     padding: 5
   },
   hp: {
-    color: '#21AC1D',
+    color: "#21AC1D",
     fontSize: 30,
     margin: 10,
-    fontWeight: 'bold',
+    fontWeight: "bold"
   },
   attack: {
-    color: '#E50914',
+    color: "#E50914",
     fontSize: 30,
     margin: 10,
-    fontWeight: 'bold',
+    fontWeight: "bold"
   },
   defense: {
-    color: '#F6F603',
+    color: "#F6F603",
     fontSize: 30,
     margin: 10,
-    fontWeight: 'bold',
+    fontWeight: "bold"
   },
   speed: {
     color: "#2586E8",
     fontSize: 30,
     margin: 10,
-    fontWeight: 'bold',
+    fontWeight: "bold"
   },
   zombie: {
     position: "absolute",

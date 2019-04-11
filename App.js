@@ -14,6 +14,8 @@ import BodiesScreen from "./components/BodiesScreen";
 import LoginScreen from "./components/LoginScreen";
 import SignUpScreen from "./components/SignUpScreen";
 import AccountScreen from "./components/AccountScreen";
+import PlayedBeforeScreen from "./components/PlayedBeforeScreen";
+import InformationScreen from "./components/InformationScreen";
 
 const tabNavigatorSettings = {
   Portfolio: {
@@ -50,7 +52,10 @@ const TabNavigator = createBottomTabNavigator(tabNavigatorSettings, {
   }),
   tabBarOptions: {
     activeTintColor: "red",
-    inactiveTintColor: "gray"
+    inactiveTintColor: "white",
+    style: {
+      backgroundColor: "green"
+    }
   }
 });
 
@@ -82,7 +87,9 @@ const AuthNavigator = createStackNavigator(
 const SwitchNavigator = createSwitchNavigator(
   {
     Auth: AuthNavigator,
-    App: AppNavigator
+    App: AppNavigator,
+    Ask: PlayedBeforeScreen,
+    Info: InformationScreen
   },
   {
     initialRouteName: "Auth"

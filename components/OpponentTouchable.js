@@ -8,10 +8,10 @@ export default class OpponentTouchable extends Component {
 
   render() {
     return (
-      <View>
+      <View style={styles.container}>
         <Text style={styles.text}>{this.props.name}</Text>
         <TouchableOpacity
-         style={styles.touch}
+          style={styles.touch}
           onPress={() => this.props.onpress(this.props.opponentIndex)}>
           <Text style={styles.text}> Attack </Text>
         </TouchableOpacity>
@@ -21,15 +21,20 @@ export default class OpponentTouchable extends Component {
 }
 
 const styles = StyleSheet.create({
+  container: {
+    flexDirection: "row",
+    justifyContent: "flex-end"
+  },
   touch: {
-    backgroundColor: '#21AC1D',
+    backgroundColor: "#21AC1D",
     width: 100,
     alignItems: "center",
     borderRadius: 5,
-    marginBottom: 20
+    marginBottom: 20,
+    marginLeft: 20
   },
   text: {
-    color: 'white',
+    color: "white",
     fontSize: 30
   }
-})
+});

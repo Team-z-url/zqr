@@ -8,7 +8,7 @@ export default class BodyTouchable extends Component {
 
   render() {
     return (
-      <View>
+      <View style={styles.container}>
         <Text style={styles.text}>{this.props.name}</Text>
         <TouchableOpacity
           style={styles.touch}
@@ -20,16 +20,20 @@ export default class BodyTouchable extends Component {
   }
 }
 const styles = StyleSheet.create({
+  container: {
+    flexDirection: "row",
+    justifyContent: "flex-end"
+  },
   text: {
-    color: 'white',
+    color: "white",
     fontSize: 20
   },
   touch: {
-    backgroundColor: '#21AC1D',
+    backgroundColor: "#21AC1D",
     width: 60,
     alignItems: "center",
     borderRadius: 5,
-    marginBottom: 20
-  },
+    marginBottom: 20,
+    marginLeft: 20
+  }
 });
-
